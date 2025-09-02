@@ -61,7 +61,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <!-- Forgot + Login inline -->
           <div class="d-flex justify-content-between align-items-center mb-4">
             <a href="/index.php?page=forgot" class="text-decoration-none text-muted" style="font-size: 15px;">Forgot Password?</a>
-            <button type="submit" class="btn btn-primary w-50 py-1">Login</button>
+            <button type="button" class="btn btn-primary w-50 py-1"
+            onclick="window.location.href='/index.php?page=dashboard'">
+            Login
+          </button>
+
           </div>
 
           <!-- Social logins -->

@@ -1,3 +1,7 @@
-<footer style="background:#2c3e50; color:white; padding:10px; text-align:center; position:fixed; bottom:0; width:100%;">
-    <p>&copy; <?php echo date("Y"); ?> Dental Management System</p>
-</footer>
+  </main>
+  <footer class="bg-light text-center py-3 mt-5 border-top">
+    <p class="mb-0">&copy; <?php echo date("Y"); ?> SmileSync. All Rights Reserved.</p>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

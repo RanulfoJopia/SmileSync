@@ -17,7 +17,9 @@ $routes = [
     'landing'  => '../resources/views/landing.php',
     'login'    => '../resources/views/auth/login.php',
     'register' => '../resources/views/auth/register.php',
-    'forgot'   => '../resources/views/auth/forgot.php'
+    'forgot'   => '../resources/views/auth/forgot.php',
+    'dashboard'=> '../resources/views/dashboard.php',
+
 ];
 
 // Check if page is valid
