@@ -1,25 +1,3 @@
-<?php
-// register.php
-
-// Example placeholder for backend logic
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $firstName  = $_POST['first_name'];
-    $lastName   = $_POST['last_name'];
-    $middleName = $_POST['middle_name'];
-    $suffix     = $_POST['suffix'];
-    $email      = $_POST['email'];
-    $password   = $_POST['password'];
-    $confirmPwd = $_POST['confirm_password'];
-
-    // Simple validation example
-    if ($password === $confirmPwd) {
-        // TODO: Save user into database
-        echo "<script>alert('Registration successful!');</script>";
-    } else {
-        echo "<script>alert('Passwords do not match!');</script>";
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,16 +5,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register - SmileSync</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/login.css">
+  <style>
+    /* Background with blur */
+    body {
+      background: url('https://www.bostondentalgroup.com/wp-content/uploads/2015/09/Most-Important-Reasons-to-Visit-the-Dentist.jpg') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+    }
+
+    /* Blur overlay */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(8px);
+      background-color: rgba(255, 255, 255, 0.4); /* slight white overlay */
+      z-index: 0;
+    }
+
+    /* Card styling */
+    .register-card {
+      position: relative;
+      z-index: 1;
+      background: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .register-card img {
+      border-radius: 0 15px 15px 0;
+    }
+  </style>
 </head>
 <body>
-  <div class="d-flex justify-content-center align-items-center min-vh-100">
-    <div class="card shadow-lg border-0" style="max-width: 900px; width: 100%;">
+
+  <div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow-lg border-0 w-100 register-card" style="max-width: 850px;">
       <div class="row g-0">
 
         <!-- Left side (Form) -->
         <div class="col-md-6 p-5">
-          <h4 class="fw-bold" style="color: #1c6ea4;">Create Your SmileSync Account</h4>
+          <h4 class="fw-bold text-primary">Create Your SmileSync Account</h4>
           <p class="text-muted mb-4">Fill in your details below</p>
 
           <form method="POST" action="register.php">
@@ -58,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label class="form-label">Middle Name</label>
                 <input type="text" name="middle_name" class="form-control form-control-sm" required>
               </div>
-              <div class="col-md-4 mb-2">
+              <div class="col-md-6 mb-2">
                 <label class="form-label">Suffix</label>
                 <input type="text" name="suffix" class="form-control form-control-sm" placeholder="e.g. Jr, Sr, III">
               </div>
@@ -84,13 +96,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <!-- Register Button -->
             <div class="d-grid mb-3">
-              <button type="submit" class="btn btn-primary py-2" >Register</button>
+              <button type="submit" class="btn btn-primary py-2">Register</button>
             </div>
 
             <!-- Back to Login -->
             <p class="text-center mb-0">
               Already have an account? 
-              <a href="/index.php?page=login" class="fw-bold text-decoration-none" style="color: #1c6ea4;">Login here</a>
+              <a href="/index.php?page=login" class="fw-bold text-decoration-none text-primary">Login here</a>
             </p>
           </form>
         </div>
@@ -106,11 +118,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
     </div>
   </div>
-
-  <!-- Footer-->
-  <footer class="text-muted text-center py-1" style="background-color: #9ECAD6;">
-    <p class="mb-0">&copy; 2025 RanEditz. All rights reserved.</p>
-  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

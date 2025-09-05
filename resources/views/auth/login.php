@@ -17,6 +17,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+  <style>
+    /* Background with blur */
+    body {
+      background: url('https://www.bostondentalgroup.com/wp-content/uploads/2015/09/Most-Important-Reasons-to-Visit-the-Dentist.jpg') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+    }
+
+    /* Blur overlay */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(8px);
+      background-color: rgba(255, 255, 255, 0.4); /* slight white overlay */
+      z-index: 0;
+    }
+
+    /* Card styling */
+    .register-card {
+      position: relative;
+      z-index: 1;
+      background: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .register-card img {
+      border-radius: 0 15px 15px 0;
+    }
+  </style>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">

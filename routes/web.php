@@ -19,6 +19,8 @@ $routes = [
     'register' => '../resources/views/auth/register.php',
     'forgot'   => '../resources/views/auth/forgot.php',
     'dashboard'=> '../resources/views/dashboard.php',
+    'patients' => '../resources/views/patients/view.php',
+    'add_patient' => '../resources/views/patients/list.php',
 
 ];
 
