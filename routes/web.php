@@ -21,6 +21,8 @@ $routes = [
     'dashboard'=> '../resources/views/dashboard.php',
     'patients' => '../resources/views/patients/view.php',
     'add_patient' => '../resources/views/patients/list.php',
+    'appointments' => '../resources/views/appointments/create.php',
+    
 
 ];
 

@@ -86,7 +86,7 @@ $page = isset($_GET['page']) ? strtolower($_GET['page']) : 'dashboard';
 <nav class="navbar navbar-expand-lg px-4">
   <a class="navbar-brand fw-bold text-white" href="/index.php?page=landing">🦷 SmileSync</a>
   <div class="ms-auto d-flex align-items-center">
-    <span class="patient-name fw-semibold me-3">Jane Doe</span>
+    <span class="patient-name fw-semibold me-3">Dr. Sopapi Monyanyo</span>
     <img src="https://i.pravatar.cc/40?img=6" alt="Patient" class="profile-img">
   </div>
 </nav>
@@ -103,7 +103,7 @@ $page = isset($_GET['page']) ? strtolower($_GET['page']) : 'dashboard';
           </a>
         </li>
         <li class="nav-item mb-3">
-          <a class="nav-link fw-semibold" href="/index.php?page=Appointments">
+          <a class="nav-link fw-semibold" href="/index.php?page=appointments">
             <i class="bi bi-calendar-check me-2 text-primary"></i> Appointments
           </a>
         </li>
@@ -114,7 +114,13 @@ $page = isset($_GET['page']) ? strtolower($_GET['page']) : 'dashboard';
         </li>
         <li class="nav-item mb-3">
           <a class="nav-link fw-semibold" href="#">
-            <i class="bi bi-capsule-pill me-2 text-warning"></i> Prescriptions
+            <i class="bi bi-capsule-pill me-2 text-warning"></i> Reports
+          </a>
+        </li>
+        <li class="nav-item mb-3">
+          <a class="nav-link fw-semibold" href="#">
+            <i class="bi bi-bell me-2 text-danger"></i> Notifications
+
           </a>
         </li>
       </ul>
