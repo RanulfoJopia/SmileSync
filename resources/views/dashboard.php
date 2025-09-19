@@ -1,29 +1,31 @@
 <?php
-// dashboard.php (or include this at top of your page)
-// Determine current page from URL (fallback 'dashboard')
-$page = isset($_GET['page']) ? strtolower($_GET['page']) : 'dashboard';
+// report.php – SmileSync Reports Page
+$page = isset($_GET['page']) ? strtolower($_GET['page']) : 'reports';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Patient Dashboard</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SmileSync – Reports</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
   <style>
     body {
-      background: #f8f9fc;
+      background-color: #f8f9fc;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     .navbar {
       background: #0069d9;
     }
-    .navbar-brand, .patient-name {
-      color: white !important;
+    .navbar-brand, .navbar-nav .nav-link {
+      color: #fff !important;
+    }
+    .navbar-brand:hover, .navbar-nav .nav-link:hover {
+      color: #e2e6ea !important;
     }
 
-    /* Sidebar base */
+    /* Sidebar */
     .sidebar {
       background: #ffffff;
       min-height: 100vh;
@@ -34,10 +36,8 @@ $page = isset($_GET['page']) ? strtolower($_GET['page']) : 'dashboard';
       font-weight: bold;
       color: #0069d9;
     }
-
-    /* Nav link styling */
     .sidebar .nav-link {
-      color: #000 !important;              /* default black */
+      color: #000 !important;
       border-radius: 8px;
       padding: 10px 12px;
       transition: all .2s ease-in-out;
@@ -48,45 +48,41 @@ $page = isset($_GET['page']) ? strtolower($_GET['page']) : 'dashboard';
       font-size: 1.05rem;
       margin-right: .6rem;
     }
-
-    /* Hover */
     .sidebar .nav-link:hover {
       background-color: #0069d9;
       color: #fff !important;
     }
-    .sidebar .nav-link:hover .bi {
-      color: #fff !important;              /* icons turn white on hover */
-    }
-
-    /* Active state */
     .sidebar .nav-link.active {
       background-color: #0069d9;
       color: #fff !important;
       font-weight: bold;
       box-shadow: 0 2px 6px rgba(0,105,217,.15);
     }
-    .sidebar .nav-link.active .bi {
-      color: #fff !important;              /* icons turn white when active */
-    }
 
     .card {
       border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
       transition: 0.3s;
     }
-    .card:hover { transform: translateY(-5px); }
-    .card-icon { font-size: 2rem; margin-right: 10px; }
-    .profile-img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
-    .stat-graph { height: 250px; }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .chart-container {
+      height: 280px;
+    }
+    .table thead {
+      background-color: #0069d9;
+      color: #fff;
+    }
   </style>
 </head>
 <body>
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg px-4">
-  <a class="navbar-brand fw-bold text-white" href="/index.php?page=landing">🦷 SmileSync</a>
+  <a class="navbar-brand fw-bold text-white" href="#">🦷 SmileSync</a>
   <div class="ms-auto d-flex align-items-center">
-    <span class="patient-name fw-semibold me-3">Dr. Sopapi Monyanyo</span>
+    <span class="patient-name fw-semibold me-3 text-white">Dr. Sopapi Monyanyo</span>
     <img src="https://i.pravatar.cc/40?img=6" alt="Patient" class="profile-img">
   </div>
 </nav>
@@ -94,8 +90,8 @@ $page = isset($_GET['page']) ? strtolower($_GET['page']) : 'dashboard';
 <div class="container-fluid">
   <div class="row">
     <!-- Sidebar -->
-    <div class="col-md-2 sidebar bg-light p-3 shadow-sm" style="min-height: 100vh;">
-      <h5 class="text-dark fw-bold">Navigation</h5>
+    <div class="col-md-2 sidebar bg-light p-3 shadow-sm">
+      <h5>Navigation</h5>
       <ul class="nav flex-column mt-3">
         <li class="nav-item mb-3">
           <a class="nav-link fw-semibold active" href="/index.php?page=dashboard">
@@ -108,19 +104,23 @@ $page = isset($_GET['page']) ? strtolower($_GET['page']) : 'dashboard';
           </a>
         </li>
         <li class="nav-item mb-3">
-          <a class="nav-link fw-semibold" href="/index.php?page=patients">
-            <i class="bi bi-file-earmark-medical me-2 text-danger"></i> Records
+          <a class="nav-link fw-semibold" href="/index.php?page=records">
+            <i class="bi bi-people me-2 text-danger"></i> Records
           </a>
         </li>
         <li class="nav-item mb-3">
-          <a class="nav-link fw-semibold" href="#">
-            <i class="bi bi-capsule-pill me-2 text-warning"></i> Reports
+          <a class="nav-link fw-semibold" href="/index.php?page=patientsview">
+            <i class="bi bi-bell me-2 text-danger"></i> Patients
+          </a>
+        </li>
+        <li class="nav-item mb-3">
+          <a class="nav-link fw-semibold" href="/index.php?page=report">
+            <i class="bi bi-bar-chart-line me-2 text-warning"></i> Reports
           </a>
         </li>
         <li class="nav-item mb-3">
           <a class="nav-link fw-semibold" href="#">
             <i class="bi bi-bell me-2 text-danger"></i> Notifications
-
           </a>
         </li>
       </ul>
@@ -128,104 +128,147 @@ $page = isset($_GET['page']) ? strtolower($_GET['page']) : 'dashboard';
 
     <!-- Main Content -->
     <div class="col-md-10 p-4">
-      <div class="row g-4">
-        <div class="d-flex justify-content-start mb-3">
-          <a href="/index.php?page=add_patient" class="btn btn-primary">
-            <i class="bi bi-person-plus me-2"></i> Add Patient
-          </a>
-        </div>
 
-        <!-- Stats Cards -->
-        <div class="col-md-4">
+      <!-- Header -->
+      <div class="text-center mb-4">
+        <h1 class="fw-bold text-primary">Dashboard</h1>
+        <p class="text-muted">Overview of patients, doctors, appointments, and medications</p>
+      </div>
+
+      <!-- Top Summary Cards -->
+      <div class="row g-4 mb-4">
+        <div class="col-md-3">
           <div class="card p-3 text-center">
-            <i class="bi bi-calendar-event card-icon text-primary"></i>
-            <h5>Upcoming Appointments</h5>
-            <h3 class="fw-bold">2</h3>
+            <i class="bi bi-people-fill text-primary fs-1"></i>
+            <h6 class="mt-2">Total Patients</h6>
+            <h3 class="fw-bold">120</h3>
           </div>
         </div>
-
-        <div class="col-md-4">
+        <div class="col-md-3">
           <div class="card p-3 text-center">
-            <i class="bi bi-heart-pulse card-icon text-danger"></i>
-            <h5>Completed Visits</h5>
-            <h3 class="fw-bold">5</h3>
+            <i class="bi bi-person-badge text-success fs-1"></i>
+            <h6 class="mt-2">Total Doctors</h6>
+            <h3 class="fw-bold">12</h3>
           </div>
         </div>
-
-        <div class="col-md-4">
+        <div class="col-md-3">
           <div class="card p-3 text-center">
-            <i class="bi bi-capsule card-icon text-warning"></i>
-            <h5>Prescriptions</h5>
-            <h3 class="fw-bold">3</h3>
+            <i class="bi bi-calendar-check text-warning fs-1"></i>
+            <h6 class="mt-2">Appointments</h6>
+            <h3 class="fw-bold">350</h3>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card p-3 text-center">
+            <i class="bi bi-capsule-pill text-danger fs-1"></i>
+            <h6 class="mt-2">Medications</h6>
+            <h3 class="fw-bold">75</h3>
           </div>
         </div>
       </div>
 
-      <!-- Appointments & Records -->
-      <div class="row g-4 mt-2">
+      <!-- Charts Section -->
+      <div class="row g-4 mb-4">
         <div class="col-md-6">
           <div class="card p-3">
-            <h5><i class="bi bi-calendar-week text-primary"></i> Upcoming Appointments</h5>
-            <ul class="list-group list-group-flush mt-2">
-              <li class="list-group-item">Sept 5 - Dr. Smith @ 10:00 AM</li>
-              <li class="list-group-item">Sept 12 - Dr. Johnson @ 1:00 PM</li>
-            </ul>
+            <h5 class="fw-bold text-primary"><i class="bi bi-pie-chart me-2"></i> Patient Demographics</h5>
+            <div class="chart-container">
+              <canvas id="patientsChart"></canvas>
+            </div>
           </div>
         </div>
 
         <div class="col-md-6">
           <div class="card p-3">
-            <h5><i class="bi bi-file-medical text-danger"></i> Previous Visits</h5>
-            <ul class="list-group list-group-flush mt-2">
-              <li class="list-group-item">Aug 20 - Tooth Extraction</li>
-              <li class="list-group-item">July 15 - Cleaning</li>
-              <li class="list-group-item">June 5 - Root Canal</li>
-            </ul>
+            <h5 class="fw-bold text-primary"><i class="bi bi-bar-chart me-2"></i> Appointments per Month</h5>
+            <div class="chart-container">
+              <canvas id="appointmentsChart"></canvas>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Prescriptions & Graph -->
-      <div class="row g-4 mt-2">
-        <div class="col-md-6">
-          <div class="card p-3">
-            <h5><i class="bi bi-capsule-pill text-warning"></i> Prescriptions</h5>
-            <ul class="list-group list-group-flush mt-2">
-              <li class="list-group-item">Amoxicillin - 7 days</li>
-              <li class="list-group-item">Ibuprofen - as needed</li>
-              <li class="list-group-item">Mouth Rinse - 14 days</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="card p-3">
-            <h5><i class="bi bi-bar-chart-line text-primary"></i> Health Progress</h5>
-            <canvas id="healthChart" class="stat-graph mt-3"></canvas>
-          </div>
+      <!-- Table Section -->
+      <div class="card p-3 mb-4">
+        <h5 class="fw-bold text-primary mb-3"><i class="bi bi-list-ul me-2"></i> Recent Appointments</h5>
+        <div class="table-responsive">
+          <table class="table table-hover align-middle">
+            <thead>
+              <tr>
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>John Doe</td>
+                <td>Dr. Smith</td>
+                <td>2025-09-10</td>
+                <td>10:00 AM</td>
+                <td><span class="badge bg-success">Completed</span></td>
+              </tr>
+              <tr>
+                <td>Jane Smith</td>
+                <td>Dr. Johnson</td>
+                <td>2025-09-12</td>
+                <td>01:00 PM</td>
+                <td><span class="badge bg-warning text-dark">Upcoming</span></td>
+              </tr>
+              <tr>
+                <td>Mike Brown</td>
+                <td>Dr. Lee</td>
+                <td>2025-09-15</td>
+                <td>03:00 PM</td>
+                <td><span class="badge bg-danger">Cancelled</span></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
+
+      
 
     </div>
   </div>
 </div>
 
-<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-  const ctx = document.getElementById('healthChart').getContext('2d');
-  const healthChart = new Chart(ctx, {
-    type: 'line',
+  // Pie Chart (Patients Demographics)
+  const patientsCtx = document.getElementById('patientsChart').getContext('2d');
+  new Chart(patientsCtx, {
+    type: 'pie',
     data: {
-      labels: ['June', 'July', 'Aug', 'Sept'],
+      labels: ['Male', 'Female', 'Other'],
       datasets: [{
-        label: 'Dental Health Score',
-        data: [60, 70, 80, 85],
-        borderColor: '#0069d9',
-        backgroundColor: 'rgba(0,105,217,0.12)',
-        fill: true,
-        tension: 0.4
+        data: [55, 40, 5],
+        backgroundColor: ['#0069d9', '#e83e8c', '#ffc107']
       }]
+    }
+  });
+
+  // Bar Chart (Appointments per Month)
+  const appointmentsCtx = document.getElementById('appointmentsChart').getContext('2d');
+  new Chart(appointmentsCtx, {
+    type: 'bar',
+    data: {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+      datasets: [{
+        label: 'Appointments',
+        data: [30, 45, 35, 50, 60, 40],
+        backgroundColor: '#0069d9'
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
     }
   });
 </script>

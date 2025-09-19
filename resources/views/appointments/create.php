@@ -93,12 +93,17 @@ $page = isset($_GET['page']) ? strtolower($_GET['page']) : 'appointments';
           </a>
         </li>
         <li class="nav-item mb-3">
-          <a class="nav-link fw-semibold <?= $page === 'patients' ? 'active' : '' ?>" href="/index.php?page=patients">
+          <a class="nav-link fw-semibold <?= $page === 'records' ? 'active' : '' ?>" href="/index.php?page=records">
             <i class="bi bi-file-earmark-medical me-2 text-danger"></i> Records
           </a>
         </li>
         <li class="nav-item mb-3">
-          <a class="nav-link fw-semibold" href="#">
+          <a class="nav-link fw-semibold" href="/index.php?page=patientsview">
+            <i class="bi bi-bell me-2 text-danger"></i> Patients
+          </a>
+        </li>
+        <li class="nav-item mb-3">
+          <a class="nav-link fw-semibold" href="/index.php?page=report">
             <i class="bi bi-capsule-pill me-2 text-warning"></i> Reports
           </a>
         </li>

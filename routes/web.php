@@ -19,10 +19,13 @@ $routes = [
     'register' => '../resources/views/auth/register.php',
     'forgot'   => '../resources/views/auth/forgot.php',
     'dashboard'=> '../resources/views/dashboard.php',
-    'patients' => '../resources/views/patients/view.php',
-    'add_patient' => '../resources/views/patients/list.php',
+    'records' => '../resources/views/records/details.php',
+    'addpatient' => '../resources/views/patients/list.php',
     'appointments' => '../resources/views/appointments/create.php',
-    
+    'profile'  => '../resources/views/patients/profile.php',
+    'list'     => '../resources/views/records/list.php',
+    'report'   => '../resources/views/reports/viewreport.php',
+    'patientsview'  => '../resources/views/patients/view.php',
 
 ];
 
